@@ -56,6 +56,7 @@ class SpaceNavigationEnv_v2(gym.Env):
         old_dist = np.linalg.norm(np.array([x, y, z]) - self.goal)
 
         # Update velocity based on thrust
+        action = int(action) # UPDATED TO INT =============!
         velocity = np.array([vx, vy, vz], dtype=np.float32) + thrust_directions[action] * thrust_magnitude
     
         # Update position using physics
