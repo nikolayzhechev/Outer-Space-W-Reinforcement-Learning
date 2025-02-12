@@ -33,9 +33,9 @@ class Agent():
         self.seed = random.seed(seed)
 
         # Q-Network
-        self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device)
-        self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device)
-        self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
+        self.qnetwork_local = QNetwork(state_size, action_size, seed).to(device) # Used for action selection
+        self.qnetwork_target = QNetwork(state_size, action_size, seed).to(device) # Used to compute target Q-values for learning
+        self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR) # Adam optimizer
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
